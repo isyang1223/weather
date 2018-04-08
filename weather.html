@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Weather</title>
+        <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+        <script>
+            $(document).ready(function() {
+                $('form').submit(function() {
+                    var location = $('#location').val();
+                    var print ="";
+
+                    $.get( "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&APPID=3fb22e5c13b46e2d1f8f6226563e0fac", function(res) {
+                        print += "<h1>" + location + "</h1>"
+                        print += "<h3>Temperature: " + res.main.temp;
+                        $("#info").html(print);
+                    }, 'json');
+
+                    return false;
+                });
+            });
+        
+               
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id ="location" type ="text">
+            <button type="submit">Search Weather</button>
+            <div id="info"></div>
+        </form>
+    
+            
+    </body>
+</html>
